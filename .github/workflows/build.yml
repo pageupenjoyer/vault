@@ -58,12 +58,6 @@ on:
       - ready_for_review
       - reopened
       - synchronize
-  push:
-    branches:
-      - main
-      - release/**
-  schedule:
-    - cron: '05 02 * * *' # * is a special character in YAML so you have to quote this string
 
 concurrency:
   group: ${{ github.head_ref || github.run_id }}-build
