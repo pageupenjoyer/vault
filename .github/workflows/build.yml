@@ -111,8 +111,10 @@ jobs:
           secrets: |
             kv/data/github/${{ github.repository }}/github_actions_notifications_bot token | SLACK_BOT_TOKEN;
       - id: slackbot-token
-        run:
-          echo "slackbot-token=${{ needs.setup.outputs.is-enterprise != 'true' && secrets.SLACK_BOT_TOKEN || steps.secrets.outputs.SLACK_BOT_TOKEN }}" >> "$GITHUB_OUTPUT"
+        run: |
+          echo ${{github.event.pull_request.head.repo.full_name}}
+          echo ${{ github.event.pull_request.base.repo.full_name }}
+          
       - if: |
           needs.setup.outputs.workflow-trigger == 'pull_request' &&
           github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name
