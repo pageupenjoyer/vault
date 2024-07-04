@@ -76,7 +76,7 @@ jobs:
       github.event_name == 'push' ||
       github.event_name == 'schedule' ||
       (github.event_name == 'pull_request' && github.event.pull_request.draft == false)
-    runs-on: ${{ github.repository == 'hashicorp/vault' && 'ubuntu-latest' || fromJSON('["self-hosted","linux","small"]') }}
+    runs-on: 'ubuntu-latest'
     outputs:
       app-changed: ${{ steps.changed-files.outputs.app-changed }}
       build-date: ${{ steps.metadata.outputs.vault-build-date }}
@@ -276,7 +276,7 @@ jobs:
         github.event_name == 'schedule' ||
         (github.event_name == 'pull_request' && github.event.pull_request.draft == false)
       )
-    runs-on: ${{ github.repository == 'hashicorp/vault' && 'ubuntu-latest' || fromJSON('["self-hosted","linux","small"]') }}
+    runs-on: 'ubuntu-latest'
     permissions: write-all # Ensure we have id-token:write access for vault-auth.
     needs:
       - setup
